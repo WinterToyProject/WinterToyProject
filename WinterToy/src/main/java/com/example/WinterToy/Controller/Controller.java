@@ -9,4 +9,5 @@ public class Controller {
     public String test() {
         return "Hello, world!";
     }
+    
 }
