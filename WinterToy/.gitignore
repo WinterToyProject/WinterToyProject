@@ -39,7 +39,7 @@ out/
 *.properties
 *.application.properties
 gradlew
-*.bat
-*.gradle
+gradlew.bat
+settings.gradle
 
 build.gradle
