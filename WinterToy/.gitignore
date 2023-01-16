@@ -36,6 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 ###Intellij IDEA ###
-**/application.properties
+*.properties
+*.application.properties
 
 build.gradle
