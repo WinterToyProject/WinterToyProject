@@ -1,6 +1,6 @@
-package com.example.WinterToy.login.repository;
+package com.example.WinterToy.login.data.repository;
 
-import com.example.WinterToy.login.repository.entity.User;
+import com.example.WinterToy.login.data.repository.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
