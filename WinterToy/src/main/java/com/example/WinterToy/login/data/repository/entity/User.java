@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Table
-public class UserEntity {
+public class User {
     @Id
     @GeneratedValue
     private long seq;
