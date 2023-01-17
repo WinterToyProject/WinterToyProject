@@ -1,4 +1,4 @@
-package com.example.WinterToy.login.controller.dto;
+package com.example.WinterToy.login.repository.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
