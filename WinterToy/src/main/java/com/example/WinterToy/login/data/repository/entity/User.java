@@ -1,4 +1,4 @@
-package com.example.WinterToy.login.repository.entity;
+package com.example.WinterToy.login.data.repository.entity;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Table
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue
     private long seq;
