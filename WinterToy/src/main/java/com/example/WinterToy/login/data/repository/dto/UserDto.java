@@ -11,14 +11,9 @@ import javax.validation.constraints.Min;
 @Builder
 @Data
 public final class UserDto {    //UserRequest -> UserDto
-    @Min(value = 5)
-    @Max(value = 20)
+
     private String userId;
-    @Min(value = 8)
-    @Max(value = 20)
     private String password;
-    @Min(value = 1)
-    @Max(value = 15)
     private String userName;
 
     public User toEntity(){
