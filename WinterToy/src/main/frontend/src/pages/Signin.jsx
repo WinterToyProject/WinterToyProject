@@ -4,10 +4,10 @@ import axios from 'axios';
 
 
 function Signin() {
-    const [name, setName] = useState('');
-    const [id, setId] = useState('');
-    const [pw, setPw] = useState('');
-    const  {replace} = useNavigate();
+
+    const [userName, setUserName] = useState('');
+    const [userId, setUserId] = useState('');
+    const [password, setPassword] = useState('');
 
 
     const [nameValid, setNameValid] = useState(false)
@@ -15,53 +15,52 @@ function Signin() {
     const [pwValid, setPwValid] = useState(false)
     const [notAllow, setNotAllow] = useState(true)
 
-    const register = () => {
-        axios
-    .post('http://localhost:8080/user/signup', {
-        username: name,
-        id: id,
-        password: pw,
-    })
-    .then(response => {
-    // Handle success.
-        console.log('Well done!');
-        console.log('User profile', response.data.user);
-        console.log('User token', response.data.jwt);
-        localStorage.setItem('token', response.data.jwt);
-        replace("/");
-    })
-    .catch(error => {
-    // Handle error.
-    console.log('An error occurred:', error.response);
-    });
+
+    const onSubmitHandler =  (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:8080/user/signup',
+            {
+                userName: userName,
+                userId: userId,
+                password: password,
+            })
+            .then(() => {
+                console.log("씨발 들어왔다");
+            })
+
+            .catch(function (error) {
+                console.log("{userName, userId, password}");
+            });
     }
+
+
 
 
     const handleName = (e) => {
         setUserName(e.target.value);
         const regex =
-        /^[가-힣]{2,5}$/;
-        if (regex.test(name)) {
+            new RegExp(/^[가-힣]{2,5}$/)
+        if (regex.test(userName)) {
             setNameValid(true);
         } else {
             setNameValid(false);
         }
     }
     const handleId = (e) => {
-        setId(e.target.value);
-        const regex = 
-        /^[a-z0-9_]{4,12}$/;
-        if (regex.test(id)) {
+        setUserId(e.target.value);
+        const regex =
+            /^[a-z0-9_]{4,12}$/;
+        if (regex.test(userId)) {
             setIdValid(true);
         } else {
             setIdValid(false);
         }
     }
     const handlePw = (e) => {
-        setPw(e.target.value);
-        const regex = 
-        /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]|.*[0-9]).{8,24}$/;
-        if (regex.test(pw)) {
+        setPassword(e.target.value);
+        const regex =
+            /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]|.*[0-9]).{8,24}$/;
+        if (regex.test(password)) {
             setPwValid(true);
         } else {
             setPwValid(false);
@@ -75,10 +74,9 @@ function Signin() {
         }
         setNotAllow(true);
     }, [nameValid , idValid , pwValid]);
-    
 
-    
-    
+
+
 
     return (
         <div className='page'>
@@ -116,8 +114,8 @@ function Signin() {
                     />
                 </div>
                 <div className="errorMessage">
-                {
-                        !idValid && id.length > 0 && (
+                    {
+                        !idValid && userId.length > 0 && (
                             <div>올바른 아이디를 입력해주세요.</div>
                         )
                     }
@@ -129,26 +127,22 @@ function Signin() {
                         type='password'
                         className="input"
                         placeholder='영문대소문자, 숫자, 특수문자 포함 8자 이상 입력'
-                        value={pw}
-                        onChange={handlePw} 
-                        />
+                        value={password}
+                        onChange={handlePw}
+                    />
                 </div>
                 <div className="errorMessage">
-                {
-                        !pwValid && pw.length > 0 && (
+                    {
+                        !pwValid && password.length > 0 && (
                             <div>영문대소문자, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
                         )
                     }
                 </div>
             </div>
+            <button disabled={notAllow} onClick={onSubmitHandler} className='bottomButton'>
+                확인
+            </button>
 
-            <div>
-                <button disabled={notAllow} className='bottomButton' onClick={() => {
-                    register();
-                }}>
-                    확인
-                </button>
-            </div>
         </div>
     );
 }
