@@ -4,76 +4,63 @@ import axios from 'axios';
 
 
 function Signin() {
-    const [name, setName] = useState('');
-    const [id, setId] = useState('');
-    const [pw, setPw] = useState('');
+
+    const [userName, setUserName] = useState('');
+    const [userId, setUserId] = useState('');
+    const [password, setPassword] = useState('');
 
 
     const [nameValid, setNameValid] = useState(false)
     const [idValid, setIdValid] = useState(false)
     const [pwValid, setPwValid] = useState(false)
     const [notAllow, setNotAllow] = useState(true)
-    /*const [posts, setPosts] = useState([]);*/
 
 
-    /*const fetchData = async () => {
-        const response = await axios.get('http://localhost:8080/user/signup');
-        setName(response.data);
-        setId(response.data);
-        setPw(response.data);
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);*/
-
-
-    const onSubmitHandler = async (e) => {
+    const onSubmitHandler =  (e) => {
         e.preventDefault();
-        const name = e.target.value;
-        const id = e.target.value;
-        const pw = e.target.value;
-        await axios.post('http://localhost:8080/user/signup', {name, id, pw});
-        /*fetch('http://localhost:8080/user/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify ({
-                name,
-                id,
-                pw,
-        })
-        }) */
-    };
+        axios.post('http://localhost:8080/user/signup',
+            {
+                userName: userName,
+                userId: userId,
+                password: password,
+            })
+            .then(() => {
+                console.log("씨발 들어왔다");
+            })
+
+            .catch(function (error) {
+                console.log("{userName, userId, password}");
+            });
+    }
+
 
 
 
     const handleName = (e) => {
-        setName(e.target.value);
+        setUserName(e.target.value);
         const regex =
             new RegExp(/^[가-힣]{2,5}$/)
-        if (regex.test(name)) {
+        if (regex.test(userName)) {
             setNameValid(true);
         } else {
             setNameValid(false);
         }
     }
     const handleId = (e) => {
-        setId(e.target.value);
+        setUserId(e.target.value);
         const regex =
             /^[a-z0-9_]{4,12}$/;
-        if (regex.test(id)) {
+        if (regex.test(userId)) {
             setIdValid(true);
         } else {
             setIdValid(false);
         }
     }
     const handlePw = (e) => {
-        setPw(e.target.value);
+        setPassword(e.target.value);
         const regex =
             /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]|.*[0-9]).{8,24}$/;
-        if (regex.test(pw)) {
+        if (regex.test(password)) {
             setPwValid(true);
         } else {
             setPwValid(false);
@@ -91,7 +78,6 @@ function Signin() {
 
 
 
-
     return (
         <div className='page'>
             <div className="titleWrap">
@@ -105,13 +91,13 @@ function Signin() {
                         type='text'
                         className="input"
                         placeholder='홍길동'
-                        value={name}
+                        value={userName}
                         onChange={handleName}
                     />
                 </div>
                 <div className="errorMessage">
                     {
-                        !nameValid && name.length > 0 && (
+                        !nameValid && userName.length > 0 && (
                             <div>올바른 이름을 입력해주세요.</div>
                         )
                     }
@@ -123,13 +109,13 @@ function Signin() {
                         type='text'
                         className="input"
                         placeholder='4~12자 영문소문자, 숫자 입력'
-                        value={id}
+                        value={userId}
                         onChange={handleId}
                     />
                 </div>
                 <div className="errorMessage">
                     {
-                        !idValid && id.length > 0 && (
+                        !idValid && userId.length > 0 && (
                             <div>올바른 아이디를 입력해주세요.</div>
                         )
                     }
@@ -141,27 +127,26 @@ function Signin() {
                         type='password'
                         className="input"
                         placeholder='영문대소문자, 숫자, 특수문자 포함 8자 이상 입력'
-                        value={pw}
+                        value={password}
                         onChange={handlePw}
                     />
                 </div>
                 <div className="errorMessage">
                     {
-                        !pwValid && pw.length > 0 && (
+                        !pwValid && password.length > 0 && (
                             <div>영문대소문자, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
                         )
                     }
                 </div>
             </div>
+            <button disabled={notAllow} onClick={onSubmitHandler} className='bottomButton'>
+                확인
+            </button>
 
-            <form onSubmit={onSubmitHandler}>
-                <button disabled={notAllow} className='bottomButton'>
-                    확인
-                </button>
-            </form>
         </div>
     );
 }
+
 
 
 export default Signin;
