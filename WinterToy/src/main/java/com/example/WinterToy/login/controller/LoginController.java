@@ -22,7 +22,7 @@ public class LoginController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity signup(@Valid @RequestBody UserDto request){
+    public ResponseEntity signup(@RequestBody UserDto request){
 
         log.info("userId = {}, password = {}, userName = {}", request.getUserId(), request.getPassword(), request.getUserName());
         if(userService.signup(request).equals("Success")) {
