@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React from 'react';
 import Header from './components/Header';
 import Signin from './pages/Signin';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -10,13 +9,6 @@ import './App.css';
 
 
 function App() {
-  const [hello, setHello] = useState('')
-
-  useEffect(() => {
-    axios.get('/')
-        .then(response => setHello(response.data))
-        .catch(error => console.log(error))
-  }, []);
 
   return (
       <BrowserRouter>
