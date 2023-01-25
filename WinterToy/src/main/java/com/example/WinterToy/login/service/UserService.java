@@ -31,7 +31,8 @@ public class UserService {
     public String login(String userId, String password) {
         Optional<User> user = userRepository.findByUserId(userId);
         log.info("db password = {}, input password = {}", user.get().getPassword(), password);
-        if(user.get().getPassword().equals(password)) {
+        String encodePw=user.get().getPassword();
+        if(passwordEncoder.matches(password,encodePw)) {
             return "Success";
         }
         return "Failed";
