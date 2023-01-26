@@ -26,7 +26,7 @@ function Login() {
             .then((response) => {
                 console.log(response);
                 alert('로그인에 성공했습니다');
-                localStorage.setItem('id', response.data.id)
+                localStorage.setItem('id', response.data.userId)
                 localStorage.setItem('pw', response.data.password)
                 document.location.href = '/'
                 
