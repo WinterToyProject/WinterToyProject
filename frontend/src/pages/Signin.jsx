@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Signin.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 
 
@@ -28,7 +27,8 @@ function Signin() {
             })
             .then(() => {
                 alert('회원가입에 성공했습니다!');
-                <Link className='site-name' to='/'></Link>
+                
+                
             })
 
             .catch(function (error) {
