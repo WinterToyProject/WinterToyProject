@@ -8,6 +8,7 @@ public class WinterToyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WinterToyApplication.class, args);
+		System.out.println(org.hibernate.Version.getVersionString());
 	}
 
 }
