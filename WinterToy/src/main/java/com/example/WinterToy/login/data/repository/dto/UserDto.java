@@ -1,10 +1,10 @@
 package com.example.WinterToy.login.data.repository.dto;
 
 import com.example.WinterToy.login.data.repository.entity.User;
-import lombok.*;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
