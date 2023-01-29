@@ -14,7 +14,6 @@ public class MarkService {
     private final MarkRepository markRepository;
 
     public String save(Markdto markdto){
-
         markRepository.save(Mark.builder().
                 userId(markdto.getUserId()).
                 latitude(markdto.getLatitude()).
