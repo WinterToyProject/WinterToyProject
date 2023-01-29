@@ -37,8 +37,6 @@ function Signin() {
     }
 
 
-
-
     const handleName = (e) => {
         setUserName(e.target.value);
         const regex =
