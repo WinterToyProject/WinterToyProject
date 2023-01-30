@@ -4,26 +4,31 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 function LoginHeader() {
-  const onLogout = () => {
-    localStorage.removeItem('id')
-    localStorage.removeItem('pw')
-    window.location.replace("/")
+
+  const onLogout = (e) => {
+    e.preventDefault();
+    axios.get('http://localhost:8080/user/logout')
+    .then((response) => {
+      window.location.replace("http://localhost:3000/")
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert('Error: ')
+    })
+    
   };
 
   const SessionHandler = (e) => {
     e.preventDefault();
-    axios.get('http://localhost:8080/session-status', {
-      
-
-    })
-    .then((response) => {
-      console.log(response);
-      window.location.replace("http://localhost:3000/LoginHome")
-    })
+    axios.get('http://localhost:8080/session-info')
+      .then((response) => {
+        console.log(response);
+        window.location.replace("http://localhost:3000/LoginHome")
+      })
     
-    .catch(function (err) {
-      window.location.replace("http://localhost:3000/Login")
-    })
+      .catch(function (err) {
+        window.location.replace("http://localhost:3000/Login")
+      })
   }
 
   return (
@@ -34,7 +39,7 @@ function LoginHeader() {
         </Link>
         <ul class="menu">
           <li>
-            <p>{localStorage.getItem('id')} 님 어서오세요!</p>
+            <p>{localStorage.getItem('userName')} 님 어서오세요!</p>
             <button onClick={onLogout}>Logout</button>
           </li>
         </ul>
