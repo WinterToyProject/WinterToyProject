@@ -45,3 +45,12 @@ header ul.menu li a:hover {
   opacity: 1;
   transition: 0.5s;
 }
+header ul.menu li p {
+  padding: 0 10px;
+  font-size: 20px;
+  display: block;
+  align-items: center;
+  color: white;
+  opacity: 0.8;
+  text-decoration: none;
+}
