@@ -14,11 +14,11 @@ public class SessionInfoController {
     public String sessionInfo(HttpServletRequest request){
         HttpSession session=request.getSession(false);
         if(session==null){
-            return "No Session";
+            return null;
         }
 
         System.out.println(session.getId()+","+(session.getAttribute("id"))+(session.getAttribute("pw")));
 
-        return  null;
+        return  "Success";
     }
 }
