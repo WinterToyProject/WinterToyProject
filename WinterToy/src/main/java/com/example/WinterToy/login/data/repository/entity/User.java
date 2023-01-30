@@ -13,11 +13,11 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Table
-public class User {
-    @Id
+public class  User {
+
     @GeneratedValue
     private long seq;
-
+    @Id
     @Column(unique = true)
     private String userId;
 
