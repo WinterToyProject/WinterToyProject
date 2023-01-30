@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './Signin.css';
+import '../styles/Signin.css';
 import axios from 'axios';
+import Header from '../components/Header';
 
 
 
@@ -80,6 +81,8 @@ function Signin() {
 
 
     return (
+        <>
+        <Header />
         <div className='page'>
             <div className="titleWrap">
                 회원 가입
@@ -145,6 +148,7 @@ function Signin() {
             </button>
 
         </div>
+        </>
     );
 }
 

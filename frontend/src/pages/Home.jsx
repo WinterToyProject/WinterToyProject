@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
+import Header from '../components/Header';
 import './Home.css';
 
 const {kakao} = window;
 
-export default function Home() {
+function Home() {
 
 
   useEffect(() => {
     const container = document.getElementById('map');
     const options =  {
       center: new kakao.maps.LatLng(37.497990, 127.027417),
-      level: 3
+      level: 12
   };
   
   
@@ -23,6 +24,11 @@ export default function Home() {
 
 
   return (
+    <>
+    <Header />
     <div id="map"></div>
+    </>
   )
 }
+
+export default Home;

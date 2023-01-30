@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-export default function Header() {
+function Header() {
   return (
     <header>
       <div className="inner">
@@ -25,3 +25,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default Header;

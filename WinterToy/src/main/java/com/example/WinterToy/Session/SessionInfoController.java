@@ -10,15 +10,17 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @RestController
 public class SessionInfoController {
-    @GetMapping("/session-info")
+    @GetMapping("/sessioninfo")
     public String sessionInfo(HttpServletRequest request){
-        HttpSession session=request.getSession(false);
-        if(session==null){
-            return "No Session";
+        String session1 = request.getSession().getId();
+        request.getSession().getAttribute("id");
+        log.info(session1);
+        if(session1==null){
+            log.info("씨발");
+            return null;
         }
-
-        System.out.println(session.getId()+","+(session.getAttribute("id"))+(session.getAttribute("pw")));
-
-        return  null;
+        System.out.println(request.getSession().getId()+","+(request.getSession().getAttribute("id")));
+        log.info("수행됨");
+        return  "Success";
     }
 }

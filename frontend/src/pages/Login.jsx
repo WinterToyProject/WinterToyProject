@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import './Login.css';
+import '../styles/Login.css';
 import axios from 'axios';
+import Header from '../components/Header';
 
 
 
 
 
 function Login() {
+    
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
+    const [userName, setUserName] = useState('');
 
 
     const [idValid, setIdValid] = useState(false)
@@ -22,13 +25,15 @@ function Login() {
             {
                 userId: userId,
                 password: password,
+                userName: userName,
             })
             .then((response) => {
                 console.log(response);
                 alert('로그인에 성공했습니다');
                 localStorage.setItem('id', response.data.userId)
                 localStorage.setItem('pw', response.data.password)
-                document.location.href = '/'
+                localStorage.setItem('userName', response.data.userName)
+                window.location.replace("http://localhost:3000/LoginHome")
                 
                 
             })
@@ -73,6 +78,8 @@ function Login() {
 
 
     return (
+        <>
+    <Header />
     <div className='page'>
             <div className="titleWrap">
                 로그인
@@ -121,6 +128,7 @@ function Login() {
             </button>
 
         </div>
+        </>
     )
 }
 
