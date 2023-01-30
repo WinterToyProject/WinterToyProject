@@ -1,7 +1,6 @@
 package com.example.WinterToy.gps.repository.entity;
 
 import lombok.Getter;
-import net.bytebuddy.asm.Advice;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
