@@ -20,7 +20,7 @@ function LoginHeader() {
 
   const SessionHandler = (e) => {
     e.preventDefault();
-    axios.get('http://localhost:8080/session-info')
+    axios.get('http://localhost:8080/sessioninfo')
       .then((response) => {
         console.log(response);
         window.location.replace("http://localhost:3000/LoginHome")
