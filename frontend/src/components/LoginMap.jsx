@@ -9,7 +9,7 @@ function LoginMap() {
   useEffect(() => {
     const container = document.getElementById('Loginmap');
     const options =  {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      center: new kakao.maps.LatLng(36.517711, 127.802537),
       level: 4,
 
       
@@ -47,6 +47,7 @@ function displayMarker(locPosition, message) {
       map: map, 
       position: locPosition
   }); 
+
   
   var iwContent = message, // 인포윈도우에 표시할 내용
       iwRemoveable = true;

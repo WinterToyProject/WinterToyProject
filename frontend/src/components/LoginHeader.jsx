@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import '../App.css';
+import '../styles/LoginHeader.css';
 
 function LoginHeader() {
 
@@ -10,6 +10,7 @@ function LoginHeader() {
     axios.get('http://localhost:8080/user/logout')
     .then((response) => {
       window.location.replace("http://localhost:3000/")
+      localStorage.clear();
     })
     .catch(function (error) {
       console.log(error);
