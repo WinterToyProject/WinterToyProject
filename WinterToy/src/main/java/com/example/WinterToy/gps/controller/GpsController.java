@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Slf4j
 @RequestMapping("/gps")
 @RestController
@@ -19,8 +21,8 @@ public class GpsController {
     private final MarkService markService;
 
     @PostMapping("/save")
-    public ResponseEntity save(@RequestBody Markdto markdto) {
-        if(markService.save(markdto).equals("Success")){
+    public ResponseEntity save(@RequestBody Markdto markdto, HttpServletRequest request) {
+        if(markService.save(markdto,request).equals("Success")){
             return new ResponseEntity(HttpStatus.CREATED);
         }
         return new ResponseEntity(HttpStatus. BAD_REQUEST);
