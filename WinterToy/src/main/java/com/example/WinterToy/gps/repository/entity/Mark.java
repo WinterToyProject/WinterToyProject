@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -21,6 +18,9 @@ import javax.persistence.Table;
 @Table
 public class Mark extends BaseTimeEntity {
     @Id
+    @GeneratedValue
+    private long seq;
+    @Column
     private String userId;
     @Column
     private double latitude;
