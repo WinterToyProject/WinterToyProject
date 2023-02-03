@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import CloseIcon from '@material-ui/icons/Close';
 
 import {useDispatch} from 'react-redux';
-import {actionCreators as markerActions} from '../redux/modules/marker';
+import {actionCreators as markerActions} from '../modules/marker';
 
 
 const MarkerModal =(props) => {

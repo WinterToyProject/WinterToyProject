@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import MarkerModal from './MarkerModal';
 
 const {kakao} = window;
@@ -9,6 +10,7 @@ function LoginMap() {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
   const [is_modal, setModal] = useState(false);
+  const normalMarker = useSelector((state) => state.marker.normal)
 
 
   useEffect(() => {
@@ -113,7 +115,7 @@ function LoginMap() {
   const zoomControl = new kakao.maps.ZoomControl();
   map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
   
-}, [])
+}, [normalMarker])
 
 const closeModal = () => {
   setModal(false);
