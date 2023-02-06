@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import CloseIcon from '@material-ui/icons/Close';
-
-import {useDispatch} from 'react-redux';
-import {actionCreators as markerActions} from '../modules/marker';
-
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import {actionCreators as markerActions} from '../redux/modules/marker';
 
 const MarkerModal =(props) => {
   const dispatch = useDispatch()
@@ -27,6 +26,16 @@ const MarkerModal =(props) => {
       longitude : props.longitude,
       title: title,
     }
+
+    /*axios.post('http://localhost:8080/gps/save',
+    {
+      latitude: props.latitude,
+      longitude: props.longitude,
+      title: title,
+    })
+    .then((response) => {
+      console.log(response.data)
+    })*/
 
     // 새 마커 값을 담아서 미들웨어 함수를 실행시킵니다.
     dispatch(markerActions.addMarkerAX(marker))
