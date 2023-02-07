@@ -30,11 +30,5 @@ public class Mark extends BaseTimeEntity {
     private String text;
 
 
-    public Markdto markdto(){
-        return Markdto.builder()
-                .latitude(latitude)
-                .longitude(longitude)
-                .text(text)
-                .build();
-    }
+
 }
