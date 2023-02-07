@@ -18,7 +18,7 @@ public class MarkService {
 
     public String save(Markdto markdto, HttpServletRequest request){
         markRepository.save(Mark.builder().
-                userId((String)request.getSession().getAttribute("id") ).
+                userId(markdto.getUserId() ).
                 latitude(markdto.getLatitude()).
                 longitude(markdto.getLongitude()).
                 text(markdto.getText()).build());
