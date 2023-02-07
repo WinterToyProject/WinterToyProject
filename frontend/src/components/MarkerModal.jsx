@@ -20,10 +20,11 @@ const MarkerModal = (props) => {
     {
       latitude: props.latitude,
       longitude: props.longitude,
-      title: text,
+      text: text,
+      userId: localStorage.getItem('id'),
     })
     .then((response) => {
-      console.log(response.data)
+      console.log(response)
     })
     .catch(function (error) {
       alert('실패했습니다!');
