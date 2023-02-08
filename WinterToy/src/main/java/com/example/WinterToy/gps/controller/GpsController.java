@@ -1,6 +1,7 @@
 package com.example.WinterToy.gps.controller;
 
 import com.example.WinterToy.gps.repository.dto.Markdto;
+import com.example.WinterToy.gps.repository.dto.Userdto;
 import com.example.WinterToy.gps.repository.entity.Mark;
 import com.example.WinterToy.gps.service.MarkService;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +27,10 @@ public class GpsController {
         }
         return new ResponseEntity(HttpStatus. BAD_REQUEST);
     }
-    @GetMapping("/mark")
+    @PostMapping ("/mark")
     @ResponseBody
-    public List<Mark> mark(HttpServletRequest request){
-        List<Mark> mark=markService.mark((String) request.getSession().getAttribute("id"),request);
+    public List<Mark> mark(@RequestBody Userdto userdto){
+        List<Mark> mark=markService.mark(userdto.getUserId());
         return mark;
     }
 }
