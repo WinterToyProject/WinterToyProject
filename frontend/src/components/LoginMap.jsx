@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MarkerModal from "./MarkerModal.jsx";
@@ -8,6 +9,8 @@ function LoginMap() {
   const [is_modal, setModal] = useState(false);
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
+  const [text, setText] = useState();
+  const [userId, setUserId] = useState();
 
   useEffect(() => {
     const container = document.getElementById("Loginmap");
@@ -78,13 +81,43 @@ function LoginMap() {
       clickmarker.setPosition(latlng);
 
       clickmarker.setMap(map);
+
     })
 
     var clickmarker = new kakao.maps.Marker({
       position: map.getCenter(),
     });
 
-    clickmarker.setMap(map);
+    
+    axios.get("http://localhost:8080/gps/mark", {
+      params: {
+        latitude: latitude,
+        longitude: longitude,
+        userId: userId,
+        text: text,
+      }
+    })
+    .then((response) => {
+      console.log(response)
+      var markers = [];
+      
+      function setMarkers(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+      setMarkers(map);
+    })
+
+    /*var markers = [];
+
+    function setMarkers(map) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+      }
+    }
+    setMarkers(map)*/
+    
 
     kakao.maps.event.addListener(clickmarker, "click", function () {
       setModal(true);
