@@ -22,4 +22,5 @@ public class SessionInfoController {
         log.info("수행됨");
         return  "Success";
     }
+
 }
