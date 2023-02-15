@@ -22,15 +22,16 @@ public class GpsController {
 
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody Markdto markdto, HttpServletRequest request) {
-        if(markService.save(markdto,request).equals("Success")){
+        request.getSession().getAttribute("id");
+        if(markService.save(markdto).equals("Success")){
             return new ResponseEntity(HttpStatus.CREATED);
         }
         return new ResponseEntity(HttpStatus. BAD_REQUEST);
     }
-    @PostMapping ("/mark")
+    @GetMapping ("/mark")
     @ResponseBody
-    public List<Mark> mark(@RequestBody Userdto userdto){
-        List<Mark> mark=markService.mark(userdto.getUserId());
+    public List<Mark> mark(@RequestParam String userId){
+        List<Mark> mark=markService.mark(userId);
         return mark;
     }
 }
