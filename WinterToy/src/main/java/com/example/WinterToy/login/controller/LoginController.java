@@ -1,5 +1,6 @@
 package com.example.WinterToy.login.controller;
 
+import com.example.WinterToy.login.data.repository.UserRepository;
 import com.example.WinterToy.login.data.repository.dto.UserDto;
 import com.example.WinterToy.login.data.repository.entity.User;
 import com.example.WinterToy.login.service.UserService;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,6 +23,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LoginController {
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @PostMapping("/signup")
     public ResponseEntity signup(@RequestBody UserDto request){
@@ -33,7 +36,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public Optional<User> login(@RequestBody UserDto request, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes) {
+    public Optional<User> login(@RequestBody UserDto request, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, Model model) {
         HttpSession session= httpServletRequest.getSession();
         log.info("userId = {}, password = {}", request.getUserId(), request.getPassword());
         Optional<User> member =userService.login(request.getUserId(),request.getPassword());
@@ -41,7 +44,9 @@ public class LoginController {
             return null;
         }
         session.setAttribute("id",member.get().getUserId());
-        session.setAttribute("pw",member.get().getPassword());
+        session.setAttribute("pw", member.get().getPassword());
+        model.addAttribute("member",member);
+        log.info(session.getId());
         return member;
     }
     @GetMapping("/logout")

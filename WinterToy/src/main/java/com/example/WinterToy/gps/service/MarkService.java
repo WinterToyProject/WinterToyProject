@@ -16,9 +16,9 @@ import java.util.List;
 public class MarkService {
     private final MarkRepository markRepository;
 
-    public String save(Markdto markdto, HttpServletRequest request){
+    public String save(Markdto markdto){
         markRepository.save(Mark.builder().
-                userId(markdto.getUserId() ).
+                userId(markdto.getUserId()).
                 latitude(markdto.getLatitude()).
                 longitude(markdto.getLongitude()).
                 text(markdto.getText()).build());
