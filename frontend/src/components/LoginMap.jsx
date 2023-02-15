@@ -91,10 +91,7 @@ function LoginMap() {
     
     axios.get("http://localhost:8080/gps/mark", {
       params: {
-        latitude: latitude,
-        longitude: longitude,
         userId: userId,
-        text: text,
       }
     })
     .then((response) => {
@@ -123,7 +120,7 @@ function LoginMap() {
       setModal(true);
     });
 
-  }, []);
+  }, [userId]);
 
   const closeModal = () => {
     setModal(false);
