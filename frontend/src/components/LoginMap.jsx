@@ -113,7 +113,9 @@ function LoginMap() {
         markers[i].setMap(map);
       }
     }
-    setMarkers(map)*/
+    setMarkers(map)
+    다운버젼
+    */
     
 
     kakao.maps.event.addListener(clickmarker, "click", function () {
