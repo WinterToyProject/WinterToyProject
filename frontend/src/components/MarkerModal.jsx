@@ -14,7 +14,7 @@ const MarkerModal = (props) => {
   };
 
 
-  // 마커를 생성할 때 사용되는 함수입니다.
+  // 마커를 생성할 때 사용되는 함수입니다. 
   const addMarker = (e) => {
 
     axios.post('http://localhost:8080/gps/save',
