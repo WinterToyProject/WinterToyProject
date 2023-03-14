@@ -31,14 +31,33 @@ header ul.menu {
 
 
 header ul.menu li {
-  list-style: none;
+  display: flex;
+  align-items: center;
 }
 header ul.menu li p {
   padding: 0 10px;
   font-size: 20px;
-  display: block;
+  display: flex;
   align-items: center;
   color: white;
   opacity: 0.8;
   text-decoration: none;
+  justify-content: center;
+}
+
+.logout {
+	border:none;
+	box-shadow:none;
+	border-radius:0;
+  margin: 10px;
+	padding: 0px;
+	cursor:pointer;
+  color:#fff;
+  background-color: #616161;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
