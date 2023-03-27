@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MarkerModal from "./MarkerModal.jsx";
@@ -8,6 +9,8 @@ function LoginMap() {
   const [is_modal, setModal] = useState(false);
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
+  const [text, setText] = useState();
+  const [userId, setUserId] = useState();
 
   useEffect(() => {
     const container = document.getElementById("Loginmap");
@@ -16,6 +19,7 @@ function LoginMap() {
       level: 4,
     };
 
+    
     const map = new kakao.maps.Map(container, options);
 
     if (navigator.geolocation) {
@@ -78,19 +82,89 @@ function LoginMap() {
       clickmarker.setPosition(latlng);
 
       clickmarker.setMap(map);
+
     })
 
+    
     var clickmarker = new kakao.maps.Marker({
       position: map.getCenter(),
     });
 
-    clickmarker.setMap(map);
+    
+
+    const getData = (e) => {
+
+
+      axios.get("http://localhost:8080/gps/mark", {
+        params: {
+          userId: localStorage.getItem("id")
+        }
+      })
+          .then((response) => {
+            const gpsJson = JSON.stringify(response.data)
+            const parsedGps = JSON.parse(gpsJson);
+            console.log(gpsJson)
+            for(var i=0;i<parsedGps.length;i++){
+              var lat = parsedGps[i].latitude, // 위도
+                  lon = parsedGps[i].longitude; // 경도
+
+              var locPosition = new kakao.maps.LatLng(lat, lon);
+              displayMarker(locPosition,parsedGps[i].text);
+            }
+
+
+          })
+    };
+    getData();
+
+      
+      
+
+      /* 
+      const markers = [];
+      addMarker(new kakao.maps.LatLng(latitude,longitude))
+      function addMarker(position) {
+    
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: position
+        });
+    
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+        
+        // 생성된 마커를 배열에 추가합니다
+        markers.push(marker);
+    }
+    function setMarkers(map) {
+            
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+        
+      }
+    } 
+    setMarkers(map); */
+    
+
+    /*var markers = [];
+
+    function setMarkers(map) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+      }
+    }
+    setMarkers(map)
+    다운버젼
+    */
+
+    
+    
 
     kakao.maps.event.addListener(clickmarker, "click", function () {
       setModal(true);
     });
 
-  }, []);
+  }, [userId]);
 
   const closeModal = () => {
     setModal(false);

@@ -13,7 +13,8 @@ const MarkerModal = (props) => {
     setText(e.target.value);
   };
 
-  // 마커를 생성할 때 사용되는 함수입니다.
+
+  // 마커를 생성할 때 사용되는 함수입니다. 
   const addMarker = (e) => {
 
     axios.post('http://localhost:8080/gps/save',
@@ -36,7 +37,6 @@ const MarkerModal = (props) => {
       title: title,
     };*/
 
-    
 
     // 마커 생성 모달 창을 닫습니다.
     props.close();
@@ -108,12 +108,13 @@ const ModalButtonContainer = styled.div`
 `;
 const ModalSubmitBtn = styled.button`
   width: 100%;
-  background-color: #ffe812;
+  background-color: black;
   border: none;
   outline: none;
   padding: 10px 0;
   cursor: pointer;
   font-weight: 600;
+  color: white;
   font-size: 15px;
   border-radius: 4px;
   &:hover {

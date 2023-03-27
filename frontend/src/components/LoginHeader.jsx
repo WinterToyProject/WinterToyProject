@@ -41,7 +41,7 @@ function LoginHeader() {
         <ul class="menu">
           <li>
             <p>{localStorage.getItem('userName')} 님 어서오세요!</p>
-            <button onClick={onLogout}>Logout</button>
+            <button className="logout" onClick={onLogout}>Logout</button>
           </li>
         </ul>
       </div>
